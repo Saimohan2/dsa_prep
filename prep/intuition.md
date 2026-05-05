@@ -343,3 +343,111 @@ for i in rnage of len(nums):
 	
 	stack.append(i)
 return res
+
+
+## Given an array of integers temps where: temps[i] = temperature on day i
+## Return an array res such that: res[i] = number of days you have to wait after day i to get a 
+warmer temperature
+
+## If there is no future day with a warmer temperature, set: res[i] = 0
+temps = [73,74,75,71,69,72,76,73]
+
+Output = [1,1,4,2,1,1,0,0]
+
+this is again a monotonic stack implementation and comparing the stack top element with current 
+temperature to check if it is the release element to the elements in the stack. Once a higher 
+temperature is found, we compute the difference between top element and the current i before popping
+the top element and store it in the result array, if an element has no higher temperature in the 
+array ahead, we leave its result as 0.
+
+res = [0]*len(temps)
+stack = []
+
+for i in range of len of temps:
+
+	while stack is not empty and current temperature is > stack's last index's element in temp:
+		
+		res[stack[-1]] = i-stack[-1]
+		stack.pop()
+	
+	stack.append(i)
+return res
+
+## Given a sorted array nums and a target,
+## return the index of target. If not found → return -1
+
+nums = [-1,0,3,5,9,12]
+target = 9
+
+Output = 4
+
+as this is sorted, binary seach works for this problem, in binary search, we initialise l to 0,
+r to len(nums)-1 and mid is basically l+r//2. If the mid element is greater than target, target
+would be in the left part so we set r to mid-1 and then update mid in the start of loop until 
+target is found, when found then we can return mid value from there. When not found, we return -1 
+at last.
+
+l = 0
+r = len(nums)-1
+
+while l<=r:
+	mid = l+r//2
+
+	if nums[mid]>target:
+		r = mid-1
+	elif nums[mid]<target:
+		l = mid+1
+	else:
+		return mid
+return -1
+
+## You are given an array: piles = [3,6,7,11] Each element represents a pile of bananas.
+## You are also given an integer: h = 8 which represents the number of hours Koko has
+## to finish eating.
+## 
+## Rules:
+## Koko eats at a constant speed of k bananas per hour.
+## Each hour, she chooses one pile and eats up to k bananas.
+## If a pile has fewer than k bananas, she eats all of it and stops for that hour.
+## 
+## Return the minimum integer k such that Koko can finish all bananas within h hours.
+
+this is a tricky problem, we have to use binary serach on answer, for intuition, it has stated that
+at any given speed, if the koko has finished eating bananas in that pile before an hour, she has to
+wait idle for the entire hour before jumping to next pile, which allows us to think that max eating
+speed would be max bananas in a pile: lets say if there are 3 bananas in a pile and koko has speed
+of 5/hr then she'd finish 3 bananas and wait for the hour to be completed, if max pile is 8 and we
+use speed 10 she can finish those bananas in len(piles) hours. Max is unbounded, speed greater 
+than max pile will always lead to same result, so we take max speed as max pile bananas. So we
+take l as 1(minimum speed as there will be atleast 1 banana in a pile or even if there are 0 koko
+will wait until the hour passes) and r as max pile. At every iteration we assign mid as k and 
+check the time it takes to finish those piles using a helper function, there we implement the
+binary search. When hours taken are more than allotted hours, we assign l to mid+1 if less than or
+equal, that satisfies condition and we assign answer as mid and decrease r to find if any speed to
+left satisfies the condition as we need to find minimum speed.
+
+hours_taken func:
+	thours = 0
+
+	for p in piles:
+		thours = hours+ceil(p/k)(ceil because, if she finishes fast, she'll wait to round the hour)
+	
+	if thours<=hours_needed:
+		return True
+	else:
+		return False
+
+min_speed:
+	l = 1
+	r = max(piles)
+
+	while l<=r:
+
+		mid = (l+r)//2
+
+		if hours_taken(mid) is true:
+			answer = mid
+			r = mid-1
+		else:
+			l = mid+1
+	return answer
