@@ -1,4 +1,4 @@
-s = "abcabcbb"
+## s = "abcabcbb"
 
 need to solve this using frequency map, every new element updates count of that element, when the frequency crosses 1, we keep deleting the elements from the left and reducing count.
 
@@ -24,7 +24,7 @@ for r in range(len(s)):
 
 return maxl
 
-Given an array of positive integers nums and an integer k,
+## Given an array of positive integers nums and an integer k,
 return the length of the longest subarray such that:
 
 nums = [2,1,5,1,3,2], k = 7
@@ -49,7 +49,7 @@ for r in range(len(nums)):
 
 return maxl
 
-Given an array of positive integers nums and integer k,
+## Given an array of positive integers nums and integer k,
 return the number of subarrays whose sum is ≤ k.
 
 nums = [1,2,3]
@@ -78,7 +78,7 @@ for r in range(len(nums)):
 
 return count
 
-Given a string s and integer k, return the length of the
+## Given a string s and integer k, return the length of the
 longest substring with at most k distinct characters.
 
 s = "eceba"
@@ -112,3 +112,234 @@ for r in range of length of s:
 		increment l
 	update max if new max arrives
 return maxl
+
+## Given a string s and integer k,
+## return the number of substrings with exactly k distinct characters.
+
+s = "pqpqs"
+k = 2
+
+Output: 7
+
+Exactly k: its hard to calculate it with a regular sliding window. So we can do atmost k - atmost k-1. which leaves with k.
+
+l = 0
+f = {}
+count = 0
+
+for r in range(len(s)):
+	add right element to the freq map and increase count
+
+	while len of f > k:
+		decrease the left element count by one to shrink window
+		check if count = 0
+			delete f of l element
+		increment l
+	
+	calculate count
+return count
+
+## Given an integer array nums, return the maximum subarray sum.
+
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+Output = 6  # [4,-1,2,1]
+
+If asked in array of positive numbers, we can clearly say that the max subarray sum will be
+ the sum of all elements, but with negative numbers, the scenario shifts. The reason behind 
+ is, a negative number may destroy the current best sum, so every time we must decide on two 
+ things, whether to continue the current state by adding coming number to it or just tsart 
+ the state from current element. Ex: adding 4 to -2 kills 4's sum, as we're chcking for max, 
+ we will start afresh from 4 instead of adding it to -2. Kadane says, while finding max, 
+ chose the best at every step. We dont need two pointers, we take a greedy approach that we might find something good later, so we run it through the loop and pick best at every time.
+
+ currsum = 0
+ maxs = 0
+
+ for i in range of len of nums:
+	
+	currsum = max(current element, currsum+current element)
+
+	maxs = max(currentsum, maxs)
+return maxs
+
+## Find the maximum subarray sum after at most one deletion
+
+nums = [5, -1, -2, 10]
+expected: 15
+
+here we do kadane and we choose to either continue with the last cursum using one more option called drop, we initialise drop to 0 which means we're aiming with 1st element deletion at the start, in a greedy approach, we check last kept kadane cursum, to compare it
+with drop's state change if one more element adds to drop.
+
+keep(which is nothing but currsum) = 1st element
+drop = 0(ignoring 1st element here)
+maxs = 1st element
+
+for i in range of len of nums:
+
+	drop = max(keep, drop+nums[i])
+	keep = max(curelement, keep+curelement)
+
+	maxs = max(maxs, keep, drop)
+
+return maxs
+
+## Given a sorted array nums and an integer target, return True if there exists a 
+## pair(i, j) such that:
+
+nums = [1, 2, 3, 4, 6]
+target = 6
+
+Output: True   # because 2 + 4 = 6
+
+This is quite easy and straight forward, in a sorted lost, the bigger numbers exist to the right and smaller numbers exist to the left, so if sum exceeds target, shrink r, if sum is
+small, shrink l.
+
+l = 0
+r = len-1
+
+while l<r
+	if nums[l]+nums[r]>target:
+		decrease r
+	elif nums[l]+nums[r]<target:
+		increase l
+	else:
+		return true
+if nothing catches return false
+
+## Given an unsorted array, return indices such that: nums[i] + nums[j] == target
+
+nums = [2, 7, 11, 15]
+target = 9
+
+Output: [0, 1]
+
+Given the array is unsorted, we cant follow two pointer approach, as we cant decide the 
+direction blindly. Hence we store result in hashmap, with element as key and index as value.
+Then at each element, we subtract element from the target, if a complement found in the 
+hashmap, then we return the indeces.
+
+m = {}
+
+for i in range of len(nums):
+
+	comp = target - element
+	if comp in map:
+		return [map[comp], i]
+
+	add element to map
+return []
+
+## Given a string s, return the length of the longest substring without repeating characters.
+
+s = "abcabcbb"
+Output = 3   # "abc"
+
+again a frequency tracking pattern, we use left and right pointers, right pointer is dynamic, while left contains valid boundary. As case becomes invalid i.e., freq goes past 1 of an entering r element, the freq of l should be decremented, deeted if 0 and moved on to next l. After every valid step, recompute maxl.
+
+l = 0
+maxlen = 0
+n = len
+f = {}
+
+for r in range of n:
+
+	add r to freq/increment the count
+
+	check validity(while f{r}>1):
+		decrease s[l] count, to lose it from the state
+		check if the l freq becomes 0:
+			delete it from f
+		increment l
+
+	update maxlen
+return maxlen
+
+## Given an array of positive integers nums and integer k,
+return the length of the longest subarray such that: sum<=k
+
+nums = [2,1,5,1,3,2]
+k = 7
+Output = 3
+
+explore from right, add it to currsum, when invalid keep shrinking from l, update max.
+
+l = 0
+maxl = 0
+cursum = 0
+
+for r inr range of len:
+	cursum = cursum + r
+	while sum>k:
+		subtract l from sum
+		increment l
+	update max
+return max
+
+## Given an array nums, return all unique triplets
+## such that: nums[i] + nums[j] + nums[k] == 0
+
+nums = [-1, 0, 1, 2, -1, -4]
+
+Output:
+[[-1, -1, 2],
+ [-1,  0, 1]]
+
+This problem doesn't need to return indeces, so we just have to verify whether there's 
+possibility or not. First we haver to sort nums, then for each num, we check two sum
+condition for the numbers that are remaining, then each iteration, we check whether they are
+adding to zero, if not we increment l and r by the condition, if validity succeeds, we append
+those numbers to the res array.
+
+-4, -1, -1, 0, 1, 2
+
+-4 -1 2 -3<
+-4 0 2 -2<
+-4 1 2 -1
+
+res = []
+
+sort nums
+
+for i in range of len:
+
+	l = i+1
+	r = len-1
+
+	while nums of l l = l+1
+		l = l+1
+	while nums of r = r-1
+		r = r-1
+	
+
+	while l<r:
+
+		if i + l+r<0:
+			incr l
+		
+		elif i+l+r>0:
+			decr r
+		else:
+			append i,l,r to res
+
+return res
+
+## Given an array nums, for each element, find the next greater element to its right.
+If none exists, return -1.
+
+nums = [2,1,2,4,3]
+
+Output = [4,2,4,-1,-1]
+
+this is done by monotonic stack implementation, first we in initialize a res with -1s, and 
+an empty stack, as iterate through every element, we add element to top of stack.
+
+res = [-1]*len(nums)-1
+stack = []
+
+for i in rnage of len(nums):
+	while stack is not empty and current element is greater than stack's top:
+		res[stacktopindex] = current_element
+		stack.pop()
+	
+	stack.append(i)
+return res
