@@ -26,15 +26,15 @@
 # nums = [2,1,2,4,3]
 # print(next_greatest(nums))
 
-"""
-Given an array of integers temps where: temps[i] = temperature on day i
-Return an array res such that: res[i] = number of days you have to wait after day i to get a warmer temperature
-If there is no future day with a warmer temperature, set: res[i] = 0
+# """
+# Given an array of integers temps where: temps[i] = temperature on day i
+# Return an array res such that: res[i] = number of days you have to wait after day i to get a warmer temperature
+# If there is no future day with a warmer temperature, set: res[i] = 0
 
-temps = [73,74,75,71,69,72,76,73]
+# temps = [73,74,75,71,69,72,76,73]
 
-Output = [1,1,4,2,1,1,0,0]
-"""
+# Output = [1,1,4,2,1,1,0,0]
+# """
 
 # def high_temp(temps):
 
@@ -55,15 +55,15 @@ Output = [1,1,4,2,1,1,0,0]
 # temps = [73,74,75,71,69,72,76,73]
 # print(high_temp(temps))
 
-"""
-Given a sorted array nums and a target,
-return the index of target. If not found → return -1
+# """
+# Given a sorted array nums and a target,
+# return the index of target. If not found → return -1
 
-nums = [-1,0,3,5,9,12]
-target = 9
+# nums = [-1,0,3,5,9,12]
+# target = 9
 
-Output = 4
-"""
+# Output = 4
+# """
 
 # def bin_search(nums, target):
 
@@ -87,19 +87,19 @@ Output = 4
 # target = 9
 # print(bin_search(nums, target))
 
-"""
-You are given an array: piles = [3,6,7,11] Each element represents a pile of bananas.
-You are also given an integer: h = 8 which represents the number of hours Koko has
-to finish eating.
+# """
+# You are given an array: piles = [3,6,7,11] Each element represents a pile of bananas.
+# You are also given an integer: h = 8 which represents the number of hours Koko has
+# to finish eating.
 
-Rules
-Koko eats at a constant speed of k bananas per hour.
-Each hour, she chooses one pile and eats up to k bananas.
-If a pile has fewer than k bananas, she eats all of it and stops for that hour.
+# Rules
+# Koko eats at a constant speed of k bananas per hour.
+# Each hour, she chooses one pile and eats up to k bananas.
+# If a pile has fewer than k bananas, she eats all of it and stops for that hour.
 
-Return the minimum integer k such that Koko can finish all bananas within h hours.
+# Return the minimum integer k such that Koko can finish all bananas within h hours.
 
-"""
+# """
 
 # from math import ceil
 

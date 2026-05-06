@@ -412,18 +412,19 @@ return -1
 ## 
 ## Return the minimum integer k such that Koko can finish all bananas within h hours.
 
-this is a tricky problem, we have to use binary serach on answer, for intuition, it has stated that
-at any given speed, if the koko has finished eating bananas in that pile before an hour, she has to
-wait idle for the entire hour before jumping to next pile, which allows us to think that max eating
-speed would be max bananas in a pile: lets say if there are 3 bananas in a pile and koko has speed
-of 5/hr then she'd finish 3 bananas and wait for the hour to be completed, if max pile is 8 and we
-use speed 10 she can finish those bananas in len(piles) hours. Max is unbounded, speed greater 
-than max pile will always lead to same result, so we take max speed as max pile bananas. So we
-take l as 1(minimum speed as there will be atleast 1 banana in a pile or even if there are 0 koko
-will wait until the hour passes) and r as max pile. At every iteration we assign mid as k and 
-check the time it takes to finish those piles using a helper function, there we implement the
-binary search. When hours taken are more than allotted hours, we assign l to mid+1 if less than or
-equal, that satisfies condition and we assign answer as mid and decrease r to find if any speed to
+this is a tricky problem, we have to use binary serach on answer, for intuition, it has 
+stated that at any given speed, if the koko has finished eating bananas in that pile before 
+an hour, she has to wait idle for the entire hour before jumping to next pile, which allows 
+us to think that max eating speed would be max bananas in a pile: lets say if there are 3 
+bananas in a pile and koko has speed of 5/hr then she'd finish 3 bananas and wait for the 
+hour to be completed, if max pile is 8 and we use speed 10 she can finish those bananas in 
+len(piles) hours. Max is unbounded, speed greater than max pile will always lead to same 
+result, so we take max speed as max pile bananas. So we take l as 1(minimum speed as there 
+will be atleast 1 banana in a pile or even if there are 0 koko will wait until the hour 
+passes) and r as max pile. At every iteration we assign mid as k and check the time it takes 
+to finish those piles using a helper function, there we implement the binary search. When 
+hours taken are more than allotted hours, we assign l to mid+1 if less than or equal, that 
+satisfies condition and we assign answer as mid and decrease r to find if any speed to
 left satisfies the condition as we need to find minimum speed.
 
 hours_taken func:
@@ -451,3 +452,56 @@ min_speed:
 		else:
 			l = mid+1
 	return answer
+
+## Given an array nums and an integer k,
+## return the number of subarrays whose sum equals k.
+## 
+## nums = [1,1,1]
+		   0,1,2
+## k = 2
+## 
+## Output = 2
+
+this can be solved by prefix sum logic, any subarray sum from i-->j would be equal to
+prefsum[j]-prefsum[i-1], which means, if we subtract that subarray sum from pref[j] gives us
+value of pref[i-1], so at any point when we do pref[j]-k it should give us prefix till i-1.
+Hence we keep checking pref[j]-k at every step and verifying if we've ever seen pref till i-1
+ever, if seen, that means that sum from i-1 to j would be k.
+
+count = 0
+seen = {0:1}
+cursum= 0
+
+for i in range of len of nums:
+
+	if pref[j]-k in seen:
+		count = count + seen[pref[j]-k]
+	seen[cursum] = seen.get(cursum, 0)+1
+	
+	return count
+
+## Given an integer array nums and an integer k,
+## return the length of the longest subarray whose sum equals k.
+ 
+## nums = [1, -1, 5, -2, 3]
+## k = 3
+
+## Output = 4
+
+unlike the previous problem, we store the first occurence of every prefsum, so later when 
+its found again, we can compute the max.
+
+seen = {0:-1}
+maxlen = 0
+currsum = 0
+
+for i in range of l of nums:
+
+	if currsum-k in seen:
+		len = i-seen[currsum-k]
+	
+	else:
+		seen[currsum] = i
+	
+	maxlen = max(maxlen, len)
+return maxlen
