@@ -185,3 +185,78 @@ nums becomes:
 # val = 3
 
 # print(rem_val(nums, val))
+
+"""
+Move Zeroes
+
+Given an integer array nums, move all 0s to the end while maintaining the relative order of the 
+non-zero elements.
+
+You must do this in-place.
+
+Input:
+[0,1,0,3,12]
+
+Output:
+[1,3,12,0,0]
+
+"""
+
+# def move_zeroes(nums):
+
+#     l = 0
+
+#     for r in range(len(nums)):
+
+#         if nums[r]!=0:
+
+#             nums[l], nums[r] = nums[r], nums[l]
+
+#             l += 1
+    
+#     return nums
+
+# nums = [1,0,2,3]
+# print(move_zeroes(nums))
+
+"""
+Squares of a Sorted Array
+
+Given a sorted array nums in non-decreasing order, return an array of the squares of each number, 
+also sorted in non-decreasing order.
+
+Input:
+[-4,-1,0,3,10]
+
+Output:
+[0,1,9,16,100]
+
+"""
+
+# def sort_sq(nums):
+
+#     res = [0]*len(nums)
+
+#     l = 0
+#     r = len(nums)-1
+#     write = len(nums)-1
+
+#     while l<=r:
+
+#         if abs(nums[l])>abs(nums[r]):
+
+#             res[write] = nums[l]**2
+
+#             l += 1
+#             write -= 1
+        
+#         else:
+
+#             res[write] = nums[r]**2
+#             r -= 1
+#             write -= 1
+
+#     return res
+
+# nums = [-4,-1,0,3,10]
+# print(sort_sq(nums))
