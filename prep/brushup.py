@@ -115,3 +115,73 @@ Output: True
 
 # s = "A man, a plan"
 # print(is_pal(s))
+
+"""
+Given a sorted integer array nums, remove the duplicates in-place such that 
+each unique element appears only once.
+
+Return the number of unique elements k.
+
+The first k positions of nums should contain the unique elements.
+
+Input:
+nums = [1,1,2]
+
+Output:
+k = 2
+
+nums becomes:
+[1,2,_]
+"""
+
+# def unique(nums):
+
+#     left = 0
+
+#     for right in range(1, len(nums)):
+
+#         if nums[right] != nums[left]:
+
+#             left += 1
+
+#             nums[left], nums[right] = nums[right], nums[left]
+
+#     return left+1
+
+# nums = [1,1,2,3,3,5,5]
+# print(unique(nums))
+
+"""
+Remove Element
+
+Given an integer array nums and an integer val, remove all occurrences of val in-place.
+
+Return the number of remaining elements.
+
+nums = [3,2,2,3]
+val = 3
+
+Output: 2
+
+nums becomes:
+[2,2,_,_]
+"""
+
+# def rem_val(nums, val):
+
+#     l = 0
+
+#     for r in range(len(nums)):
+
+#         if nums[r] != val:
+
+#             nums[l], nums[r] = nums[r], nums[l]
+
+#             l = l+1
+
+#     return nums
+
+# nums = [3,2,3,2,3,2,3]
+# val = 3
+
+# print(rem_val(nums, val))
